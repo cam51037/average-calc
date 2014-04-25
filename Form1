@@ -1,0 +1,162 @@
+Public Class Form1
+
+    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        Dim TestOne As Double
+        Dim TestTwo As Double
+        Dim TestThree As Double
+        Dim TestFour As Double
+        Dim TestFive As Double
+        Dim NumberofTests As Integer
+        Dim Name As String
+        Dim FinishedFirst As Boolean
+        Dim FinishedSecond As Boolean
+        Dim FinishedThird As Boolean
+        Dim FinishedFourth As Boolean
+        Dim FinishedFifth As Boolean
+
+
+        Name = txtName.Text
+        NumberofTests = Val(cboNumberofTests.Text)
+
+        If Name = "" Then
+            MessageBox.Show("You've made an invalid name entry!", "Invalid Name Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            Select Case NumberofTests
+                Case Is < 2
+                    MessageBox.Show("2 tests minimum are needed to find an average.", "Less Than Two Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Case Is = 2
+                    Do While FinishedFirst = False
+                        TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
+                        If TestOne <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = TestOne
+                            FinishedFirst = True
+                        End If
+                    Loop
+                    Do While FinishedSecond = False
+                        TestTwo = Val(InputBox("Enter the mark of the second test", "Second Test Mark", "", 20, 20))
+                        If TestTwo <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo) / 2, 1)
+                            FinishedSecond = True
+                        End If
+                    Loop
+
+                Case Is = 3
+                    Do While FinishedFirst = False
+                        TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
+                        If TestOne <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = TestOne
+                            FinishedFirst = True
+                        End If
+                    Loop
+                    Do While FinishedSecond = False
+                        TestTwo = Val(InputBox("Enter the mark of the second test", "Second Test Mark", "", 20, 20))
+                        If TestTwo <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = (TestOne + TestTwo) / 2
+                            FinishedSecond = True
+                        End If
+                    Loop
+                    Do While FinishedThird = False
+                        TestThree = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                        If TestThree <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            FinishedThird = True
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo + TestThree) / 3, 1)
+                        End If
+                    Loop
+                Case Is = 4
+                    Do While FinishedFirst = False
+                        TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
+                        If TestOne <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = TestOne
+                            FinishedFirst = True
+                        End If
+                    Loop
+                    Do While FinishedSecond = False
+                        TestTwo = Val(InputBox("Enter the mark of the second test", "Second Test Mark", "", 20, 20))
+                        If TestTwo <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = (TestOne + TestTwo) / 2
+                            FinishedSecond = True
+                        End If
+                    Loop
+                    Do While FinishedThird = False
+                        TestThree = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                        If TestThree <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            FinishedThird = True
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo + TestThree) / 3, 1)
+                        End If
+                    Loop
+                    Do While FinishedFourth = False
+                        TestFour = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                        If TestFour <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            FinishedFourth = True
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo + TestThree + TestFour) / 4, 1)
+                        End If
+                    Loop
+                Case Is = 5
+                    Do While FinishedFirst = False
+                        TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
+                        If TestOne <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = TestOne
+                            FinishedFirst = True
+                        End If
+                    Loop
+                    Do While FinishedSecond = False
+                        TestTwo = Val(InputBox("Enter the mark of the second test", "Second Test Mark", "", 20, 20))
+                        If TestTwo <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            lblRunningAverage.Text = (TestOne + TestTwo) / 2
+                            FinishedSecond = True
+                        End If
+                    Loop
+                    Do While FinishedThird = False
+                        TestThree = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                        If TestThree <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            FinishedThird = True
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo + TestThree) / 3, 1)
+                        End If
+                    Loop
+                    Do While FinishedFourth = False
+                        TestFour = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                        If TestFour <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            FinishedFourth = True
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo + TestThree + TestFour) / 4, 1)
+                        End If
+                    Loop
+                    Do While FinishedFifth = False
+                        TestFive = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                        If TestFive <= 0 Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            FinishedFifth = True
+                            lblRunningAverage.Text = Math.Round((TestOne + TestTwo + TestThree + TestFour + TestFive) / 5, 1)
+                            MessageBox.Show(Name & " had an average of " & lblRunningAverage.Text & "% over " & NumberofTests & " tests.")
+                        End If
+                    Loop
+            End Select
+        End If
+    End Sub
+End Class
