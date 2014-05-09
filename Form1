@@ -1,5 +1,4 @@
-Public Class Form1
-
+Public Class Average
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Dim Average As Double
         Dim TestOne As Double
@@ -23,6 +22,8 @@ Public Class Form1
             MessageBox.Show("You've made an invalid name entry!", "Invalid Name Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
             Select Case NumberofTests
+                Case Is > 5
+                    MessageBox.Show("Only 5 tests maximum can be calculated!", "More Than Five Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Case Is >= 2
                     Do While FinishedFirst = False
                         TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
@@ -42,6 +43,8 @@ Public Class Form1
                             Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 2)
                             Call DisplayResult(Average)
                             FinishedSecond = True
+                            If NumberofTests = 2 Then
+                            End If
                         End If
                     Loop
                     If NumberofTests >= 3 Then
@@ -58,7 +61,7 @@ Public Class Form1
                     End If
                     If NumberofTests >= 4 Then
                         Do While FinishedFourth = False
-                            TestFour = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                            TestFour = Val(InputBox("Enter the mark of the fourth test", "Fourth Test Mark", "", 20, 20))
                             If TestFour <= 0 Or TestFour > 100 Then
                                 MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Else
@@ -70,21 +73,20 @@ Public Class Form1
                     End If
                     If NumberofTests = 5 Then
                         Do While FinishedFifth = False
-                            TestFive = Val(InputBox("Enter the mark of the third test", "Fifth Test Mark", "", 20, 20))
+                            TestFive = Val(InputBox("Enter the mark of the fifth test", "Fifth Test Mark", "", 20, 20))
                             If TestFive <= 0 Or TestFive > 100 Then
                                 MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Else
                                 FinishedFifth = True
                                 Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 5)
                                 Call DisplayResult(Average)
-                                MessageBox.Show(Name & " had an average of " & lblRunningAverage.Text & "% over " & NumberofTests & " tests.")
                             End If
                         Loop
                     End If
-                 
-                Case Is < 2, Is > 5
+                Case Else
                     MessageBox.Show("2 tests minimum are needed to find an average.", "Less Than Two Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Select
+            MessageBox.Show(Name & " had an average of " & lblRunningAverage.Text & "% over " & NumberofTests & " tests.")
         End If
     End Sub
     Function CalculateAverage(ByVal TestOne As Double, ByVal TestTwo As Double, ByVal TestThree As Double, ByVal TestFour As Double, ByVal TestFive As Double, ByVal NumberofTests As Integer) As Double
@@ -93,6 +95,12 @@ Public Class Form1
     Sub DisplayResult(ByVal Average As Double)
         lblRunningAverage.Text = Average.ToString
     End Sub
+    Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click, btnCancel.Click
+        txtName.Text = ""
+        cboNumberofTests.Text = ""
+        lblRunningAverage.Text = ""
+    End Sub
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Me.Close()
+    End Sub
 End Class
-
-'Success! The program has been simplified from 162 lines to 97 (excluding this comment) with a few simple changes!
