@@ -1,5 +1,3 @@
 'To Do
 
 'Simplify code with functions and procedures
-'Add For Next loop
-'Add tabbing to next text box / button
