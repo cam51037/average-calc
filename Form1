@@ -6,7 +6,7 @@ Public Class Average
     Dim TestFour As Double
     Dim TestFive As Double
     Dim NumberofTests As Integer
-    Dim Name As String
+    Dim Username As String
     Dim TestCheck As Boolean
     Dim FinishedFirst As Boolean
     Dim FinishedSecond As Boolean
@@ -14,7 +14,7 @@ Public Class Average
     Dim FinishedFourth As Boolean
     Dim FinishedFifth As Boolean
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        Name = txtName.Text
+        Username = txtName.Text
         NumberofTests = Val(cboNumberofTests.Text)
 
         FinishedFirst = False
@@ -29,98 +29,95 @@ Public Class Average
         TestFive = 0
         Average = 0
 
-        If Name = "" Then
+        If Username = "" Then
             MessageBox.Show("You've made an invalid name entry!", "Invalid Name Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Else
-            Do While NumberofTests >= 2 And NumberofTests <= 5
-
-                Select Case NumberofTests
-                    Case Is > 5
-                        MessageBox.Show("Only 5 tests maximum can be calculated!", "More Than Five Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Case Is >= 2
-                        Do While FinishedFirst = False
-                            TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
-                            TestCheck = CheckValid(TestOne)
+            Select Case NumberofTests
+                Case Is > 5
+                    MessageBox.Show("Only 5 tests maximum can be calculated!", "More Than Five Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Case Is >= 2
+                    Do While FinishedFirst = False
+                        TestOne = Val(InputBox("Enter the mark of the first test", "First Test Mark", "", 20, 20))
+                        TestCheck = CheckValid(TestOne)
+                        Call DisplayValid(TestCheck)
+                        If TestCheck = False Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 1)
+                            Call DisplayResult(Average)
+                            FinishedFirst = True
+                        End If
+                    Loop
+                    Do While FinishedSecond = False
+                        TestTwo = Val(InputBox("Enter the mark of the second test", "Second Test Mark", "", 20, 20))
+                        TestCheck = CheckValid(TestTwo)
+                        Call DisplayValid(TestCheck)
+                        If TestCheck = False Then
+                            MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 2)
+                            Call DisplayResult(Average)
+                            FinishedSecond = True
+                            If NumberofTests = 2 Then
+                            End If
+                        End If
+                    Loop
+                    If NumberofTests >= 3 Then
+                        Do While FinishedThird = False
+                            TestThree = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
+                            TestCheck = CheckValid(TestThree)
                             Call DisplayValid(TestCheck)
                             If TestCheck = False Then
                                 MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Else
-                                Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 1)
+                                FinishedThird = True
+                                Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 3)
                                 Call DisplayResult(Average)
-                                FinishedFirst = True
                             End If
                         Loop
-                        Do While FinishedSecond = False
-                            TestTwo = Val(InputBox("Enter the mark of the second test", "Second Test Mark", "", 20, 20))
-                            TestCheck = CheckValid(TestTwo)
+                    End If
+                    If NumberofTests >= 4 Then
+                        Do While FinishedFourth = False
+                            TestFour = Val(InputBox("Enter the mark of the fourth test", "Fourth Test Mark", "", 20, 20))
+                            TestCheck = CheckValid(TestFour)
                             Call DisplayValid(TestCheck)
                             If TestCheck = False Then
                                 MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Else
-                                Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 2)
+                                Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 4)
                                 Call DisplayResult(Average)
-                                FinishedSecond = True
-                                If NumberofTests = 2 Then
-                                End If
+                                FinishedFourth = True
                             End If
                         Loop
-                        If NumberofTests >= 3 Then
-                            Do While FinishedThird = False
-                                TestThree = Val(InputBox("Enter the mark of the third test", "Third Test Mark", "", 20, 20))
-                                TestCheck = CheckValid(TestThree)
-                                Call DisplayValid(TestCheck)
-                                If TestCheck = False Then
-                                    MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Else
-                                    FinishedThird = True
-                                    Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 3)
-                                    Call DisplayResult(Average)
-                                End If
-                            Loop
-                        End If
-                        If NumberofTests >= 4 Then
-                            Do While FinishedFourth = False
-                                TestFour = Val(InputBox("Enter the mark of the fourth test", "Fourth Test Mark", "", 20, 20))
-                                TestCheck = CheckValid(TestFour)
-                                Call DisplayValid(TestCheck)
-                                If TestCheck = False Then
-                                    MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Else
-                                    Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 4)
-                                    Call DisplayResult(Average)
-                                    FinishedFourth = True
-                                End If
-                            Loop
-                        End If
-                        If NumberofTests = 5 Then
-                            Do While FinishedFifth = False
-                                TestFive = Val(InputBox("Enter the mark of the fifth test", "Fifth Test Mark", "", 20, 20))
-                                TestCheck = CheckValid(TestFive)
-                                Call DisplayValid(TestCheck)
-                                If TestCheck = False Then
-                                    MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Else
-                                    FinishedFifth = True
-                                    Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 5)
-                                    Call DisplayResult(Average)
-                                End If
-                            Loop
-                        End If
-                    Case Else
-                        MessageBox.Show("2 tests minimum are needed to find an average.", "Less Than Two Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                End Select
-                If NumberofTests >= 2 And NumberofTests <= 5 Then
-                    MessageBox.Show(Name & " had an average of " & lblRunningAverage.Text & "% over " & NumberofTests & " tests.")
-                End If
-                NumberofTests = 0
-            Loop
+                    End If
+                    If NumberofTests = 5 Then
+                        Do While FinishedFifth = False
+                            TestFive = Val(InputBox("Enter the mark of the fifth test", "Fifth Test Mark", "", 20, 20))
+                            TestCheck = CheckValid(TestFive)
+                            Call DisplayValid(TestCheck)
+                            If TestCheck = False Then
+                                MessageBox.Show("You've made an invalid entry!", "Invalid Entry", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Else
+                                FinishedFifth = True
+                                Average = CalculateAverage(TestOne, TestTwo, TestThree, TestFour, TestFive, 5)
+                                Call DisplayResult(Average)
+                            End If
+                        Loop
+                    End If
+                Case Else
+                    MessageBox.Show("2 tests minimum are needed to find an average.", "Less Than Two Tests", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Select
+            If NumberofTests >= 2 And NumberofTests <= 5 Then
+                MessageBox.Show(Username & " had an average of " & lblRunningAverage.Text & " over " & NumberofTests & " tests.")
+            End If
+            NumberofTests = 0
         End If
     End Sub
     Function CalculateAverage(ByVal TestOne As Double, ByVal TestTwo As Double, ByVal TestThree As Double, ByVal TestFour As Double, ByVal TestFive As Double, ByVal NumberofTests As Integer) As Double
         Return Math.Round((TestOne + TestTwo + TestThree + TestFour + TestFive) / NumberofTests, 1)
     End Function
     Sub DisplayResult(ByVal Average As Double)
-        lblRunningAverage.Text = Average.ToString
+        lblRunningAverage.Text = Average.ToString & "%"
     End Sub
     Private Sub ResetToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ResetToolStripMenuItem.Click, btnCancel.Click
         txtName.Text = ""
@@ -139,7 +136,7 @@ Public Class Average
         Average = 0
     End Sub
     Function CheckValid(ByVal Test As Double) As Boolean
-        If Test >= 0 And Test <= 100 Then
+        If Test > 0 And Test <= 100 Then
             CheckValid = True
         Else
             CheckValid = False
